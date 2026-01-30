@@ -13,3 +13,8 @@ function filterTable() {
     }
   }
 }
+
+// Инициализация при загрузке страницы
+window.onload = function() {
+  filterTable();
+};
