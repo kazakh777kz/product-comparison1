@@ -16,19 +16,29 @@
       </ul>
     </nav>
   </header>
+
   <main>
-    <h2>Выберите товар</h2>
-    <label>Товар:</label>
-    <select id="productSelect" onchange="filterTable()">
-      <option value="iPhone 15 Pro">iPhone 15 Pro</option>
-      <option value="Samsung Galaxy S23">Samsung Galaxy S23</option>
-    </select>
+    <h2>Поиск товара</h2>
+
+    <label>Название товара:</label>
+    <input type="text" id="productInput" placeholder="Например: iPhone 15 Pro">
+
+    <h3>Выберите маркетплейсы:</h3>
+    <label><input type="checkbox" class="marketplace" value="Kaspi" checked> Kaspi</label>
+    <label><input type="checkbox" class="marketplace" value="Wildberries" checked> Wildberries</label>
+    <label><input type="checkbox" class="marketplace" value="Ozon" checked> Ozon</label>
+    <label><input type="checkbox" class="marketplace" value="Technodom" checked> Technodom</label>
+    <label><input type="checkbox" class="marketplace" value="Sulpak" checked> Sulpak</label>
+
+    <br><br>
+    <button onclick="searchProducts()">Искать</button>
 
     <table id="comparisonTable">
       <thead>
         <tr>
           <th>Товар</th>
-          <th>Магазин</th>
+          <th>Маркетплейс</th>
+          <th>Продавец</th>
           <th>Цена (₸)</th>
           <th>Доставка (₸)</th>
           <th>Срок</th>
@@ -37,57 +47,11 @@
         </tr>
       </thead>
       <tbody>
-        <!-- iPhone 15 Pro -->
-        <tr>
-          <td>iPhone 15 Pro</td>
-          <td>Kaspi</td>
-          <td>629000</td>
-          <td>0</td>
-          <td>1 день</td>
-          <td>629000</td>
-          <td><a href="https://kaspi.kz/shop/p/iphone-15-pro-1051234" target="_blank">Перейти</a></td>
-        </tr>
-        <tr>
-          <td>iPhone 15 Pro</td>
-          <td>Wildberries</td>
-          <td>615000</td>
-          <td>2000</td>
-          <td>4 дня</td>
-          <td>617000</td>
-          <td><a href="https://www.wildberries.kz/catalog/iphone-15-pro" target="_blank">Перейти</a></td>
-        </tr>
-        <tr>
-          <td>iPhone 15 Pro</td>
-          <td>Ozon</td>
-          <td>610000</td>
-          <td>3000</td>
-          <td>5 дней</td>
-          <td>613000</td>
-          <td><a href="https://www.ozon.kz/product/iphone-15-pro" target="_blank">Перейти</a></td>
-        </tr>
-
-        <!-- Samsung Galaxy S23 -->
-        <tr>
-          <td>Samsung Galaxy S23</td>
-          <td>Kaspi</td>
-          <td>540000</td>
-          <td>0</td>
-          <td>1 день</td>
-          <td>540000</td>
-          <td><a href="https://kaspi.kz/shop/p/samsung-galaxy-s23-123456" target="_blank">Перейти</a></td>
-        </tr>
-        <tr>
-          <td>Samsung Galaxy S23</td>
-          <td>Ozon</td>
-          <td>535000</td>
-          <td>2500</td>
-          <td>3 дня</td>
-          <td>537500</td>
-          <td><a href="https://www.ozon.kz/product/samsung-galaxy-s23" target="_blank">Перейти</a></td>
-        </tr>
+        <!-- результаты поиска будут вставляться здесь через JS -->
       </tbody>
     </table>
   </main>
+
   <script src="script.js"></script>
 </body>
 </html>
