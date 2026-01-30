@@ -1,31 +1,163 @@
-// Прототип базы данных товаров
 const productsDB = [
-  {name:"iPhone 15 Pro", marketplace:"Kaspi", seller:"Kaspi Official", price:629000, delivery:0, term:"1 день", url:"https://kaspi.kz/shop/p/iphone-15-pro-1051234"},
-  {name:"iPhone 15 Pro", marketplace:"Wildberries", seller:"WB Store", price:615000, delivery:2000, term:"4 дня", url:"https://www.wildberries.kz/catalog/iphone-15-pro"},
-  {name:"iPhone 15 Pro", marketplace:"Ozon", seller:"Ozon Seller", price:610000, delivery:3000, term:"5 дней", url:"https://www.ozon.kz/product/iphone-15-pro"},
-  {name:"Samsung Galaxy S23", marketplace:"Kaspi", seller:"Kaspi Official", price:540000, delivery:0, term:"1 день", url:"https://kaspi.kz/shop/p/samsung-galaxy-s23-123456"},
-  {name:"Samsung Galaxy S23", marketplace:"Ozon", seller:"Ozon Seller", price:535000, delivery:2500, term:"3 дня", url:"https://www.ozon.kz/product/samsung-galaxy-s23"},
+  // ===== iPhone 15 Pro =====
+  {
+    name: "iPhone 15 Pro",
+    marketplace: "Kaspi",
+    seller: "Kaspi Official",
+    price: 629000,
+    delivery: 0,
+    term: "1 день",
+    url: "https://kaspi.kz"
+  },
+  {
+    name: "iPhone 15 Pro",
+    marketplace: "Wildberries",
+    seller: "WB Store",
+    price: 615000,
+    delivery: 2000,
+    term: "4 дня",
+    url: "https://wildberries.kz"
+  },
+  {
+    name: "iPhone 15 Pro",
+    marketplace: "Ozon",
+    seller: "Ozon Seller",
+    price: 610000,
+    delivery: 3000,
+    term: "5 дней",
+    url: "https://ozon.kz"
+  },
+
+  // ===== Samsung Galaxy S23 =====
+  {
+    name: "Samsung Galaxy S23",
+    marketplace: "Kaspi",
+    seller: "Samsung Official",
+    price: 540000,
+    delivery: 0,
+    term: "1 день",
+    url: "https://kaspi.kz"
+  },
+  {
+    name: "Samsung Galaxy S23",
+    marketplace: "Technodom",
+    seller: "Technodom",
+    price: 548000,
+    delivery: 1500,
+    term: "2 дня",
+    url: "https://technodom.kz"
+  },
+  {
+    name: "Samsung Galaxy S23",
+    marketplace: "Ozon",
+    seller: "Ozon Seller",
+    price: 535000,
+    delivery: 2500,
+    term: "3 дня",
+    url: "https://ozon.kz"
+  },
+
+  // ===== MacBook Air M2 =====
+  {
+    name: "MacBook Air M2",
+    marketplace: "Kaspi",
+    seller: "Apple Store",
+    price: 820000,
+    delivery: 0,
+    term: "1 день",
+    url: "https://kaspi.kz"
+  },
+  {
+    name: "MacBook Air M2",
+    marketplace: "Sulpak",
+    seller: "Sulpak",
+    price: 835000,
+    delivery: 3000,
+    term: "2 дня",
+    url: "https://sulpak.kz"
+  },
+  {
+    name: "MacBook Air M2",
+    marketplace: "Ozon",
+    seller: "Ozon Tech",
+    price: 810000,
+    delivery: 4000,
+    term: "5 дней",
+    url: "https://ozon.kz"
+  },
+
+  // ===== AirPods Pro 2 =====
+  {
+    name: "AirPods Pro 2",
+    marketplace: "Kaspi",
+    seller: "Apple Official",
+    price: 145000,
+    delivery: 0,
+    term: "1 день",
+    url: "https://kaspi.kz"
+  },
+  {
+    name: "AirPods Pro 2",
+    marketplace: "Wildberries",
+    seller: "WB Audio",
+    price: 139000,
+    delivery: 1500,
+    term: "3 дня",
+    url: "https://wildberries.kz"
+  },
+
+  // ===== PlayStation 5 =====
+  {
+    name: "PlayStation 5",
+    marketplace: "Kaspi",
+    seller: "Sony Official",
+    price: 320000,
+    delivery: 0,
+    term: "1 день",
+    url: "https://kaspi.kz"
+  },
+  {
+    name: "PlayStation 5",
+    marketplace: "Technodom",
+    seller: "Technodom",
+    price: 330000,
+    delivery: 2000,
+    term: "2 дня",
+    url: "https://technodom.kz"
+  },
+  {
+    name: "PlayStation 5",
+    marketplace: "Ozon",
+    seller: "Ozon Games",
+    price: 315000,
+    delivery: 3500,
+    term: "4 дня",
+    url: "https://ozon.kz"
+  }
 ];
 
-function searchProducts(){
-  const input = document.getElementById("productInput").value.trim().toLowerCase();
-  const selectedMarketplaces = Array.from(document.querySelectorAll(".marketplace:checked")).map(cb => cb.value);
-  const tableBody = document.getElementById("comparisonTable").getElementsByTagName("tbody")[0];
+function searchProducts() {
+  const input = document.getElementById("productInput").value.toLowerCase();
+  const selectedMarkets = Array.from(
+    document.querySelectorAll(".marketplace:checked")
+  ).map(cb => cb.value);
 
-  // Очистка предыдущих результатов
+  const tableBody = document.querySelector("#comparisonTable tbody");
   tableBody.innerHTML = "";
 
-  if(input === "") {
-    alert("Введите название товара!");
+  if (!input) {
+    alert("Введите название товара");
     return;
   }
 
-  const results = productsDB.filter(p => 
-    p.name.toLowerCase().includes(input) && selectedMarketplaces.includes(p.marketplace)
+  const results = productsDB.filter(p =>
+    p.name.toLowerCase().includes(input) &&
+    selectedMarkets.includes(p.marketplace)
   );
 
-  if(results.length === 0){
-    tableBody.innerHTML = "<tr><td colspan='8'>Товары не найдены</td></tr>";
+  if (results.length === 0) {
+    tableBody.innerHTML =
+      "<tr><td colspan='8'>Ничего не найдено</td></tr>";
     return;
   }
 
@@ -38,11 +170,12 @@ function searchProducts(){
     row.insertCell(4).innerText = p.delivery;
     row.insertCell(5).innerText = p.term;
     row.insertCell(6).innerText = p.price + p.delivery;
-    const linkCell = row.insertCell(7);
-    const a = document.createElement("a");
-    a.href = p.url;
-    a.target = "_blank";
-    a.innerText = "Перейти";
-    linkCell.appendChild(a);
+
+    const link = document.createElement("a");
+    link.href = p.url;
+    link.target = "_blank";
+    link.textContent = "Перейти";
+
+    row.insertCell(7).appendChild(link);
   });
 }
