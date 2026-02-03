@@ -1,14 +1,132 @@
-body { font-family: Arial, sans-serif; background: #f5f5f5; margin:0; padding:0; }
-header { background:#333; color:white; padding:10px; }
-header h1 { margin:0; }
-nav ul { list-style:none; display:flex; margin:0; padding:0; }
-nav ul li { margin-right:20px; }
-nav ul li a { color:white; text-decoration:none; }
-main { padding:20px; }
-input[type=text] { padding:5px; width:250px; }
-button { padding:5px 10px; margin-top:10px; }
-table { border-collapse: collapse; width: 100%; margin-top:20px; background:#fff; }
-th, td { border:1px solid #ddd; padding:10px; text-align:center; }
-th { background:#444; color:white; }
-tr:nth-child(even) { background:#f2f2f2; }
-a { color:blue; text-decoration:none; }
+body {
+  margin: 0;
+  font-family: Inter, Arial, sans-serif;
+  background: #f4f6f8;
+  color: #111;
+}
+
+/* HEADER */
+header {
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 15px 30px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* CONTAINER */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* SEARCH BOX */
+.search-box {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 15px;
+}
+
+.filters label {
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.controls {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+
+select, button {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+/* PRODUCT CARD */
+.card {
+  background: white;
+  border-radius: 14px;
+  padding: 16px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.marketplace {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.delivery {
+  font-size: 13px;
+  color: #374151;
+}
+
+.total {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.card a {
+  margin-top: 15px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 8px;
+  background: #22c55e;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card a:hover {
+  background: #16a34a;
+}
