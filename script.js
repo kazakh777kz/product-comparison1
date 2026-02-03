@@ -56,48 +56,36 @@ const productsDB = [
 /* ================= SEARCH LOGIC ================= */
 
 function normalize(text) {
-  return text.toLowerCase().replace(/[^a-zа-я0-9\s]/gi, '').trim();
+  return text.toLowerCase().replace(/ё/g, "е");
 }
 
 function searchProducts() {
   const query = normalize(document.getElementById("productInput").value);
   const selectedMarkets = [...document.querySelectorAll(".marketplace:checked")].map(c => c.value);
-  const sortType = document.getElementById("sortSelect").value;
   const container = document.getElementById("results");
 
   container.innerHTML = "";
 
-  if (!query) {
-    container.innerHTML = "<p>Введите название устройства</p>";
-    return;
-  }
+  let results = productsDB.filter(p =>
+    normalize(p.name).includes(query) &&
+    selectedMarkets.includes(p.marketplace)
+  );
 
-  const words = query.split(" ");
-
-  let results = productsDB.filter(p => {
-    const name = normalize(p.name);
-    return words.some(w => name.includes(w)) &&
-           selectedMarkets.includes(p.marketplace);
-  });
-
-  if (sortType === "price") {
-    results.sort((a,b) => a.price - b.price);
-  } else if (sortType === "delivery") {
-    results.sort((a,b) => a.delivery - b.delivery);
-  } else {
-    results.sort((a,b) => (a.price + a.delivery) - (b.price + b.delivery));
-  }
-
-  if (results.length === 0) {
+  if (!results.length) {
     container.innerHTML = "<p>Ничего не найдено</p>";
     return;
   }
+
+  const minTotal = Math.min(...results.map(p => p.price + p.delivery));
 
   results.forEach(p => {
     const card = document.createElement("div");
     card.className = "card";
 
+    const isBest = (p.price + p.delivery) === minTotal;
+
     card.innerHTML = `
+      ${isBest ? `<div class="badge">Самое выгодное</div>` : ""}
       <h3>${p.name}</h3>
       <div class="marketplace">${p.marketplace} · ${p.seller}</div>
       <div class="price">${p.price.toLocaleString()} ₸</div>
