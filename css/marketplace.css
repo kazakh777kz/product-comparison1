@@ -1,1 +1,94 @@
 
+.search-box {
+  background: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+  margin-bottom: 30px;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 14px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #d1d5db;
+  margin-bottom: 15px;
+}
+
+.filters {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.controls {
+  display: flex;
+  gap: 12px;
+}
+
+/* CARDS */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.08);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: #facc15;
+  color: #78350f;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.card h3 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+
+.marketplace {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.price {
+  font-size: 22px;
+  font-weight: 800;
+  margin: 12px 0;
+}
+
+.delivery {
+  font-size: 14px;
+  color: #374151;
+}
+
+.total {
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+.card a {
+  margin-top: auto;
+  text-align: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: white;
+  font-weight: 600;
+}
