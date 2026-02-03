@@ -63,12 +63,12 @@ function searchProducts() {
   const query = normalize(document.getElementById("productInput").value);
   const selectedMarkets = [...document.querySelectorAll(".marketplace:checked")].map(c => c.value);
   const sortType = document.getElementById("sortSelect").value;
-  const table = document.querySelector("#comparisonTable tbody");
+  const container = document.getElementById("results");
 
-  table.innerHTML = "";
+  container.innerHTML = "";
 
   if (!query) {
-    table.innerHTML = `<tr><td colspan="8">Введите название устройства</td></tr>`;
+    container.innerHTML = "<p>Введите название устройства</p>";
     return;
   }
 
@@ -89,23 +89,26 @@ function searchProducts() {
   }
 
   if (results.length === 0) {
-    table.innerHTML = `<tr><td colspan="8">Подходящие товары не найдены</td></tr>`;
+    container.innerHTML = "<p>Ничего не найдено</p>";
     return;
   }
 
   results.forEach(p => {
-    const row = table.insertRow();
-    row.innerHTML = `
-      <td>${p.name}</td>
-      <td>${p.marketplace}</td>
-      <td>${p.seller}</td>
-      <td>${p.price} ₸</td>
-      <td>${p.delivery} ₸</td>
-      <td>${p.term}</td>
-      <td><b>${p.price + p.delivery} ₸</b></td>
-      <td><a href="${p.url}" target="_blank">Перейти</a></td>
+    const card = document.createElement("div");
+    card.className = "card";
+
+    card.innerHTML = `
+      <h3>${p.name}</h3>
+      <div class="marketplace">${p.marketplace} · ${p.seller}</div>
+      <div class="price">${p.price.toLocaleString()} ₸</div>
+      <div class="delivery">Доставка: ${p.delivery} ₸ · ${p.term}</div>
+      <div class="total">Итого: ${(p.price + p.delivery).toLocaleString()} ₸</div>
+      <a href="${p.url}" target="_blank">Перейти в магазин</a>
     `;
+
+    container.appendChild(card);
   });
 }
+
 
 Add extended product database
